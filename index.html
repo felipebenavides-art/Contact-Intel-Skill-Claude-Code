@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Intelligence & Strategy — /contact-intel</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────────────── -->
+<nav class="nav">
+  <img src="assets/salesforce-logo-horiz-ko.svg" alt="Salesforce" class="nav-logo" />
+  <ul class="nav-links">
+    <li><a href="#commands-vs-skills">Commands vs. Skills</a></li>
+    <li><a href="#what-is">/contact-intel</a></li>
+    <li><a href="#workflow">11-Phase Workflow</a></li>
+    <li><a href="#principles">Design Principles</a></li>
+    <li><a href="#action">See It In Action</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-eyebrow">Claude Code · Skills</div>
+  <h1>Contact Intelligence<br><span>&amp; Strategy</span></h1>
+  <p class="hero-subtitle">From account lookup to drafted outreach — in one skill. Powered by live Salesforce data.</p>
+  <div class="hero-pill">/contact-intel [Account Name]</div>
+</header>
+
+<!-- ── Section 0 — Commands vs. Skills ──────────────────── -->
+<section id="commands-vs-skills">
+  <div class="section-inner">
+    <p class="section-label">Section 0</p>
+    <h2 class="section-title">Commands vs. Skills in Claude Code</h2>
+    <p class="section-subtitle">Understanding the difference — and why it matters for how we built this tool.</p>
+
+    <div class="cvs-grid">
+      <!-- Commands card -->
+      <div class="cvs-card">
+        <h3>Commands <span class="tag">Built-in</span></h3>
+        <div class="cvs-row">
+          <div class="cvs-item">
+            <strong>What it is</strong>
+            Built-in actions hardcoded into Claude Code — things like <code>/help</code>, <code>/clear</code>, or <code>/code-review</code>.
+          </div>
+          <div class="cvs-item">
+            <strong>How you invoke it</strong>
+            Always explicit — type <code>/command-name</code> directly in chat.
+          </div>
+          <div class="cvs-item">
+            <strong>Best for</strong>
+            Discrete, immediate actions you trigger manually every time.
+          </div>
+          <div class="cvs-item">
+            <strong>Token cost</strong>
+            Always loaded into context, whether used or not.
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills card -->
+      <div class="cvs-card highlight">
+        <h3>Skills <span class="tag">Custom</span></h3>
+        <div class="cvs-row">
+          <div class="cvs-item">
+            <strong>What it is</strong>
+            Reusable, multi-step workflows you define — stored as <code>SKILL.md</code> files and loaded on demand.
+          </div>
+          <div class="cvs-item">
+            <strong>How you invoke it</strong>
+            Type <code>/skill-name</code> — or Claude loads it automatically when it detects relevance.
+          </div>
+          <div class="cvs-item">
+            <strong>Best for</strong>
+            Repeatable processes, checklists, and long instruction sets you'd otherwise paste into chat every time.
+          </div>
+          <div class="cvs-item">
+            <strong>Token cost</strong>
+            Lazy-loaded — zero cost until invoked.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cvs-callout">
+      <span class="icon">💡</span>
+      <span><strong>/contact-intel is a Skill</strong> — stored at <code>.claude/skills/contact-intel/SKILL.md</code>. It only loads when you invoke it, carries full context across all 11 phases, and can be updated without changing how you call it.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Section 1 — What is /contact-intel ───────────────── -->
+<section id="what-is">
+  <div class="section-inner">
+    <p class="section-label">Section 1</p>
+    <h2 class="section-title">What is <code>/contact-intel</code>?</h2>
+
+    <p class="what-intro">
+      A single skill that takes an account name and delivers everything you need to go from zero to a fully drafted outreach strategy — pulling live Salesforce data, enriching it with external contacts, producing ready-to-send emails and LinkedIn messages, and automatically scheduling a 7-day follow-up check with a Slack notification.
+    </p>
+
+    <div class="stat-pills">
+      <div class="stat-pill">
+        <div class="num">11</div>
+        <div class="label">Phases</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num"><span>1</span></div>
+        <div class="label">Salesforce query pass</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">7</div>
+        <div class="label">Day auto follow-up</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">3</div>
+        <div class="label">Tiers of contacts</div>
+      </div>
+    </div>
+
+    <div class="invocation-box">
+      <div class="label-sm">Invoke with</div>
+      <div class="cmd">/contact-intel [Account Name]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Section 2 — 11-Phase Workflow ────────────────────── -->
+<section id="workflow">
+  <div class="section-inner">
+    <p class="section-label">Section 2</p>
+    <h2 class="section-title">The 11-Phase Workflow</h2>
+    <p class="section-subtitle">Every phase runs in sequence. Full context carries through from Phase 1 to Phase 11 — no handoffs, no repeated queries.</p>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-num">1</div>
+        <div class="phase-body">
+          <h4>Find &amp; Confirm Account</h4>
+          <p>Searches Salesforce by account name, surfaces matches for you to confirm, then immediately pulls all open opportunities tied to that account.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">2</div>
+        <div class="phase-body">
+          <h4>Pull Contact Intelligence</h4>
+          <p>Runs five SOQL queries in a single pass: all contacts, task history, event history, email history (last 24 months), and opportunity contact roles.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">3</div>
+        <div class="phase-body">
+          <h4>ZoomInfo / External Contacts</h4>
+          <p>Before building strategy, asks if you have a ZoomInfo export. Cross-references it against Salesforce, flags anyone not in CRM, and folds them into the strategy.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">4</div>
+        <div class="phase-body">
+          <h4>Discovery Questions</h4>
+          <p>Asks three focused questions about products, sales stage, and context. Automatically skips any question Salesforce already answers — and tells you why.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">5</div>
+        <div class="phase-body">
+          <h4>Intel Summary</h4>
+          <p>Delivers a structured brief: account snapshot, contacts grouped as Active / Fading / Cold / Cautious, reconnect angles, and missing personas to source externally.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">6</div>
+        <div class="phase-body">
+          <h4>Contact Hierarchy</h4>
+          <p>Organizes all contacts into Tier 1 (Economic Buyers), Tier 2 (Champions), and Tier 3 (Influencers) — each with product alignment, strategic importance, and warm/cold status.</p>
+        </div>
+      </div>
+
+      <div class="phase special">
+        <div class="phase-num">7</div>
+        <div class="phase-body">
+          <h4>
+            Contact Selection
+            <span class="phase-badge badge-new">You choose</span>
+          </h4>
+          <p>Presents a prioritized numbered table — Tier 2 first, ordered by status — so you select exactly which contacts to include before any outreach is planned or drafted. Territory contacts (★) and cautious contacts (⚠) are flagged.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">8</div>
+        <div class="phase-body">
+          <h4>Salesforce Solution Mapping</h4>
+          <p>Recommends additional Salesforce products beyond what you mentioned, mapped to specific selected contacts with a business case tailored to the account's industry and size.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">9</div>
+        <div class="phase-body">
+          <h4>Outreach Sequence</h4>
+          <p>A week-by-week plan for selected contacts: who to approach first, top-down vs. bottom-up strategy, warm-contact bridges, and natural re-entry angles for fading relationships.</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">10</div>
+        <div class="phase-body">
+          <h4>Draft Outreach</h4>
+          <p>Produces email + LinkedIn InMail for each selected contact — warm contacts reference prior relationship and last topic; cold contacts get a tailored Caribbean-market intro. All signed as Felipe Benavides.</p>
+        </div>
+      </div>
+
+      <div class="phase special">
+        <div class="phase-num">11</div>
+        <div class="phase-body">
+          <h4>
+            Automated Follow-Up Check
+            <span class="phase-badge badge-auto">Auto in 7 days</span>
+          </h4>
+          <p>Schedules a Claude task firing in 7 days that re-queries Salesforce for responses, classifies each contact as ✅ Responded / ⏳ No response / ❓ Unknown, and sends you a Slack DM with a summary and recommended next steps.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Section 3 — Design Principles ────────────────────── -->
+<section id="principles">
+  <div class="section-inner">
+    <p class="section-label">Section 3</p>
+    <h2 class="section-title">Key Design Principles</h2>
+    <p class="section-subtitle">Every decision in this skill was made to save time, reduce noise, and keep the data honest.</p>
+
+    <div class="principles-grid">
+
+      <div class="principle-card">
+        <div class="principle-icon">⚡</div>
+        <h4>Single Salesforce Pass</h4>
+        <p>All data is queried once — no duplicate lookups, no re-running the same queries across two separate skills.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-icon">🔍</div>
+        <h4>ZoomInfo-First Enrichment</h4>
+        <p>External contacts are brought in before strategy is built, not as an afterthought — so the hierarchy reflects the full picture.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-icon">✋</div>
+        <h4>You Choose Who Gets Drafted</h4>
+        <p>A prioritized numbered table gives you full visibility before any outreach is planned or written. Nothing is drafted without your selection.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-icon">🧠</div>
+        <h4>Skips What It Already Knows</h4>
+        <p>Discovery questions are automatically dropped if Salesforce data already provides a clear answer — and the skill tells you what it skipped and why.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-icon">⏰</div>
+        <h4>Automated 7-Day Follow-Up</h4>
+        <p>A scheduled task fires in 7 days, re-checks Salesforce, and sends a Slack DM with response status and recommended next steps — no manual reminders needed.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-icon">🌎</div>
+        <h4>Territory-Aware</h4>
+        <p>Bermuda and Caribbean contacts are always flagged with ★ and prioritized throughout — the skill knows your territory.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-icon">🚩</div>
+        <h4>Data Quality Flags</h4>
+        <p>Surfaces duplicate records, missing phone numbers, non-company emails, and stale titles — so you go into outreach with clean data.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Section 4 — See It In Action ─────────────────────── -->
+<section id="action">
+  <div class="section-inner">
+    <img src="assets/salesforce-cloud.svg" alt="" class="cta-cloud" />
+    <h2 class="section-title">Let's See It In Action!</h2>
+    <p class="section-subtitle">Open Claude Code, type the skill invocation with any account in your territory, and watch all 11 phases run.</p>
+    <a href="https://claude.ai/code" target="_blank" rel="noopener" class="btn-cta">
+      Open Claude Code
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────── -->
+<footer class="footer">
+  <img src="assets/salesforce-logo-horiz-ko.svg" alt="Salesforce" class="footer-logo" />
+  <span class="footer-text">Presented by Felipe Benavides &nbsp;·&nbsp; Named Account Executive, English Speaking Caribbean</span>
+</footer>
+
+</body>
+</html>
