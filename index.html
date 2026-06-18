@@ -16,6 +16,7 @@
     <li><a href="#what-is">/contact-intel</a></li>
     <li><a href="#workflow">11-Phase Workflow</a></li>
     <li><a href="#principles">Design Principles</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
     <li><a href="#action">See It In Action</a></li>
   </ul>
 </nav>
@@ -86,6 +87,46 @@
     <div class="cvs-callout">
       <span class="icon">💡</span>
       <span><strong>/contact-intel is a Skill</strong> — stored at <code>.claude/skills/contact-intel/SKILL.md</code>. It only loads when you invoke it, carries full context across all 11 phases, and can be updated without changing how you call it.</span>
+    </div>
+
+    <div class="examples-grid">
+      <!-- Command example -->
+      <div class="example-block">
+        <div class="example-block-header cmd">⚡ Command — one-shot, always available</div>
+        <pre><span class="prompt">You › </span><span class="cmd-text">/code-review</span>
+
+<span class="output">Reviewing staged changes...
+
+• auth.js:42 — potential SQL injection
+• utils.js:18 — unused variable `temp`
+• README.md out of date
+
+3 issues found.</span>
+
+<span class="comment">// Done. No context stored. Next time you
+// type /code-review it starts fresh.</span></pre>
+      </div>
+
+      <!-- Skill example -->
+      <div class="example-block">
+        <div class="example-block-header skill">🚀 Skill — multi-phase, context-aware</div>
+        <pre><span class="prompt">You › </span><span class="skill-text">/contact-intel Allied World</span>
+
+<span class="output">Hi Sarah! Logged in as Sarah Chen (sarah.chen
+@salesforce.com). What territory are you
+covering?
+
+You › DACH
+
+Querying Salesforce for Allied World...
+✓ 14 contacts found | 3 Active | 5 Fading
+
+Do you have a ZoomInfo list to add?
+
+[Carries full context through
+ all 11 phases → drafts → 7-day
+ Slack follow-up, automatically]</span></pre>
+      </div>
     </div>
   </div>
 </section>
@@ -214,7 +255,7 @@
         <div class="phase-num">10</div>
         <div class="phase-body">
           <h4>Draft Outreach</h4>
-          <p>Produces email + LinkedIn InMail for each selected contact — warm contacts reference prior relationship and last topic; cold contacts get a tailored Caribbean-market intro. All signed as Felipe Benavides.</p>
+          <p>Produces email + LinkedIn InMail for each selected contact — warm contacts reference prior relationship and last topic; cold contacts get a tailored market intro aligned to the rep's territory. Signed with the rep's name, title, and email auto-detected from Salesforce.</p>
         </div>
       </div>
 
@@ -288,7 +329,95 @@
   </div>
 </section>
 
-<!-- ── Section 4 — See It In Action ─────────────────────── -->
+<!-- ── Section 4 — Prerequisites ────────────────────────── -->
+<section id="prerequisites">
+  <div class="section-inner">
+    <p class="section-label">Section 4</p>
+    <h2 class="section-title">What You Need to Run This Skill</h2>
+    <p class="section-subtitle">Three connections power the full 11-phase workflow. Here's what to set up before your first run.</p>
+
+    <div class="prereq-grid">
+
+      <div class="prereq-card">
+        <div class="prereq-card-header">
+          <div class="prereq-icon">☁️</div>
+          <div>
+            <span class="prereq-tag tag-required">Required</span>
+            <h4>Salesforce MCP (Org 62)</h4>
+          </div>
+        </div>
+        <p>Powers all contact lookups, activity history, opportunity data, and the 7-day follow-up check. Without this, the skill cannot run.</p>
+        <p><strong>How to connect:</strong> In Claude Code, open Settings → MCP Servers → Add Server. Select the Salesforce / Org 62 connector and authenticate with your Salesforce credentials.</p>
+      </div>
+
+      <div class="prereq-card">
+        <div class="prereq-card-header">
+          <div class="prereq-icon">💬</div>
+          <div>
+            <span class="prereq-tag tag-required">Required</span>
+            <h4>Slack MCP</h4>
+          </div>
+        </div>
+        <p>Used in Phase 11 to send the 7-day follow-up summary and the immediate scheduling confirmation directly to your Slack DM.</p>
+        <p><strong>How to connect:</strong> In Claude Code Settings → MCP Servers → Add Server. Select the Slack connector and authorize access to your Salesforce Slack workspace.</p>
+      </div>
+
+      <div class="prereq-card">
+        <div class="prereq-card-header">
+          <div class="prereq-icon">📧</div>
+          <div>
+            <span class="prereq-tag tag-optional">Recommended</span>
+            <h4>Einstein Activity Capture (EAC)</h4>
+          </div>
+        </div>
+        <p>Automatically syncs your sent and received emails to Salesforce as <code>EmailMessage</code> records. Without EAC, email responses may show as <strong>❓ Unknown</strong> in the follow-up check.</p>
+        <p><strong>How to enable:</strong> Contact your Salesforce admin to activate EAC for your user profile. No Claude Code setup required once active.</p>
+      </div>
+
+    </div>
+
+    <div class="install-steps">
+      <h3>How to Install the Skill in Claude Code</h3>
+      <div class="step-list">
+
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Create the skills directory</strong>
+            <p>In your terminal, run: <code>mkdir -p ~/.claude/skills/contact-intel</code></p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Add the SKILL.md file</strong>
+            <p>Download <code>SKILL.md</code> from this repo and place it at <code>~/.claude/skills/contact-intel/SKILL.md</code>. On Windows: <code>C:\Users\[YourName]\.claude\skills\contact-intel\SKILL.md</code></p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Verify MCP connections are active</strong>
+            <p>Open Claude Code → Settings → MCP Servers. Confirm both <strong>Salesforce (Org 62)</strong> and <strong>Slack</strong> show a green connected status.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <strong>Run your first lookup</strong>
+            <p>In any Claude Code session, type <code>/contact-intel [Account Name]</code>. The skill will identify you from Salesforce, ask for your territory, and begin Phase 1 automatically.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Section 5 — See It In Action ─────────────────────── -->
 <section id="action">
   <div class="section-inner">
     <img src="assets/salesforce-cloud.svg" alt="" class="cta-cloud" />

@@ -227,6 +227,113 @@ code {
 }
 .cvs-callout code { background: rgba(0,179,255,0.2); color: var(--cyan); }
 
+/* ── Examples block ──────────────────────────────────────── */
+.examples-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 36px;
+}
+.example-block {
+  background: #0d1b2e;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.example-block-header {
+  padding: 10px 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.example-block-header.cmd  { background: rgba(255,255,255,0.06); color: var(--gray-400); }
+.example-block-header.skill { background: rgba(0,179,255,0.12); color: var(--cyan); }
+.example-block pre {
+  margin: 0;
+  padding: 16px 18px;
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.82);
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+.example-block pre .prompt { color: var(--gray-400); }
+.example-block pre .cmd-text { color: #f8c555; }
+.example-block pre .skill-text { color: var(--cyan); }
+.example-block pre .comment { color: #6a7f9a; font-style: italic; }
+.example-block pre .output { color: #a8c7a0; }
+
+/* ── Section 4 — Prerequisites ───────────────────────────── */
+#prerequisites { background: var(--gray-50); }
+.prereq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 22px;
+  margin-bottom: 48px;
+}
+.prereq-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+.prereq-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.prereq-icon { font-size: 1.6rem; flex-shrink: 0; }
+.prereq-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy); }
+.prereq-card p { font-size: 0.92rem; color: var(--gray-700); line-height: 1.55; margin-bottom: 10px; }
+.prereq-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  padding: 3px 10px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.tag-required { background: rgba(0,30,91,0.08); color: var(--navy); border: 1px solid rgba(0,30,91,0.15); }
+.tag-optional { background: rgba(0,179,255,0.10); color: var(--cyan-dark); border: 1px solid rgba(0,179,255,0.25); }
+
+.install-steps {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  box-shadow: var(--shadow);
+}
+.install-steps h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+.step-list { display: flex; flex-direction: column; gap: 20px; }
+.step-item { display: flex; gap: 18px; align-items: flex-start; }
+.step-num {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.82rem; font-weight: 800;
+}
+.step-body { padding-top: 5px; }
+.step-body strong { display: block; font-size: 0.95rem; color: var(--navy); margin-bottom: 4px; }
+.step-body p { font-size: 0.88rem; color: var(--gray-700); line-height: 1.5; }
+.step-body code { font-size: 0.82rem; }
+
 /* ── Section 1 — What is /contact-intel ──────────────────── */
 #what-is { background: var(--white); }
 .what-intro {
@@ -426,7 +533,7 @@ code {
   flex-wrap: wrap;
   gap: 12px;
 }
-.footer-logo { height: 22px; opacity: 0.75; }
+.footer-logo { height: 28px; filter: brightness(0) invert(1); opacity: 0.85; }
 .footer-text { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
 
 /* ── Responsive ───────────────────────────────────────────── */
