@@ -499,11 +499,10 @@ code {
   position: relative;
 }
 .cta-cloud {
-  height: 80px;
+  height: 100px;
   width: auto;
   margin: 0 auto 32px;
-  opacity: 0.18;
-  filter: brightness(10);
+  border-radius: 12px;
 }
 #action .section-title { color: var(--white); margin-bottom: 16px; }
 #action .section-subtitle { color: rgba(255,255,255,0.70); margin: 0 auto 40px; }

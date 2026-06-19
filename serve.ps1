@@ -12,6 +12,7 @@ $mimeTypes = @{
   '.svg'  = 'image/svg+xml'
   '.png'  = 'image/png'
   '.jpg'  = 'image/jpeg'
+  '.jpeg' = 'image/jpeg'
   '.ico'  = 'image/x-icon'
   '.json' = 'application/json'
 }
@@ -20,18 +21,27 @@ while ($listener.IsListening) {
   $ctx  = $listener.GetContext()
   $req  = $ctx.Request
   $resp = $ctx.Response
-  $path = $req.Url.LocalPath -replace '/', [System.IO.Path]::DirectorySeparatorChar
-  if ($path -eq '\') { $path = '\index.html' }
-  $file = Join-Path $dir $path.TrimStart('\')
-  if (Test-Path $file -PathType Leaf) {
-    $ext  = [System.IO.Path]::GetExtension($file)
-    $mime = if ($mimeTypes[$ext]) { $mimeTypes[$ext] } else { 'application/octet-stream' }
-    $bytes = [System.IO.File]::ReadAllBytes($file)
-    $resp.ContentType   = $mime
-    $resp.ContentLength64 = $bytes.Length
-    $resp.OutputStream.Write($bytes, 0, $bytes.Length)
-  } else {
-    $resp.StatusCode = 404
+  try {
+    $localPath = [Uri]::UnescapeDataString($req.Url.LocalPath)
+    $sep  = [System.IO.Path]::DirectorySeparatorChar
+    $path = $localPath -replace '/', $sep
+    if ($path -eq $sep) { $path = "${sep}index.html" }
+    $file = Join-Path $dir $path.TrimStart($sep)
+    if (Test-Path $file -PathType Leaf) {
+      $ext  = [System.IO.Path]::GetExtension($file).ToLower()
+      $mime = if ($mimeTypes[$ext]) { $mimeTypes[$ext] } else { 'application/octet-stream' }
+      $bytes = [System.IO.File]::ReadAllBytes($file)
+      $resp.ContentType = $mime
+      $resp.SendChunked = $true
+      $resp.OutputStream.Write($bytes, 0, $bytes.Length)
+    } else {
+      $resp.StatusCode    = 404
+      $resp.SendChunked   = $true
+    }
+  } catch {
+    Write-Host "Error serving request: $_"
+    try { $resp.StatusCode = 500 } catch {}
+  } finally {
+    try { $resp.OutputStream.Close() } catch {}
   }
-  $resp.OutputStream.Close()
 }
