@@ -334,8 +334,15 @@ Do you have a ZoomInfo list to add?
   <div class="section-inner">
     <p class="section-label">Section 4</p>
     <h2 class="section-title">What You Need to Run This Skill</h2>
-    <p class="section-subtitle">Three connections power the full 11-phase workflow. Here's what to set up before your first run.</p>
+    <p class="section-subtitle">One prerequisite, two required connections, and one recommended setup. Follow this guide before your first run.</p>
 
+    <!-- Prerequisite banner -->
+    <div class="prereq-banner">
+      <span class="banner-icon">⚠️</span>
+      <span><strong>Prerequisite:</strong> Claude Code must be installed on your machine before following the steps below. &nbsp;<a href="https://salesforce.enterprise.slack.com/docs/T01G0063H29/F0AU8DXM71R" target="_blank" rel="noopener">Installing Claude Code for Solutions &amp; Distribution Teams →</a></span>
+    </div>
+
+    <!-- MCP cards -->
     <div class="prereq-grid">
 
       <div class="prereq-card">
@@ -348,6 +355,7 @@ Do you have a ZoomInfo list to add?
         </div>
         <p>Powers all contact lookups, activity history, opportunity data, and the 7-day follow-up check. Without this, the skill cannot run.</p>
         <p><strong>How to connect:</strong> In Claude Code, open Settings → MCP Servers → Add Server. Select the Salesforce / Org 62 connector and authenticate with your Salesforce credentials.</p>
+        <a class="mcp-link" href="https://salesforce.enterprise.slack.com/docs/T01G0063H29/F0B6J0FKT6D" target="_blank" rel="noopener">Not connected? Step-by-step instructions →</a>
       </div>
 
       <div class="prereq-card">
@@ -360,6 +368,7 @@ Do you have a ZoomInfo list to add?
         </div>
         <p>Used in Phase 11 to send the 7-day follow-up summary and the immediate scheduling confirmation directly to your Slack DM.</p>
         <p><strong>How to connect:</strong> In Claude Code Settings → MCP Servers → Add Server. Select the Slack connector and authorize access to your Salesforce Slack workspace.</p>
+        <a class="mcp-link" href="https://salesforce.enterprise.slack.com/docs/T01G0063H29/F0AU8DXM71R" target="_blank" rel="noopener">Not connected? Step-by-step instructions →</a>
       </div>
 
       <div class="prereq-card">
@@ -376,39 +385,164 @@ Do you have a ZoomInfo list to add?
 
     </div>
 
+    <!-- Install guide with OS tabs -->
     <div class="install-steps">
       <h3>How to Install the Skill in Claude Code</h3>
-      <div class="step-list">
+
+      <div class="os-tabs">
+        <button class="os-tab active" onclick="showOS(event,'mac')">🍎 Mac</button>
+        <button class="os-tab" onclick="showOS(event,'windows')">🪟 Windows</button>
+      </div>
+
+      <!-- Mac steps -->
+      <div id="steps-mac" class="os-steps">
 
         <div class="step-item">
           <div class="step-num">1</div>
           <div class="step-body">
-            <strong>Create the skills directory</strong>
-            <p>In your terminal, run: <code>mkdir -p ~/.claude/skills/contact-intel</code></p>
+            <strong>Download SKILL.md from this repo</strong>
+            <p>Go to <a href="https://github.com/felipebenavides-art/Contact-Intel-Skill-Claude-Code/blob/main/SKILL.md" target="_blank" rel="noopener">this link</a>, click the download icon (top right of the file view), and save the file. It will land in your <strong>Downloads</strong> folder as <code>SKILL.md</code>.</p>
           </div>
         </div>
 
         <div class="step-item">
           <div class="step-num">2</div>
           <div class="step-body">
-            <strong>Add the SKILL.md file</strong>
-            <p>Download <code>SKILL.md</code> from this repo and place it at <code>~/.claude/skills/contact-intel/SKILL.md</code>. On Windows: <code>C:\Users\[YourName]\.claude\skills\contact-intel\SKILL.md</code></p>
+            <strong>Open Terminal</strong>
+            <p>Press <code>Command + Space</code>, type <strong>Terminal</strong>, and press <code>Enter</code>. A black or white command-line window will open.</p>
           </div>
         </div>
 
         <div class="step-item">
           <div class="step-num">3</div>
           <div class="step-body">
-            <strong>Verify MCP connections are active</strong>
-            <p>Open Claude Code → Settings → MCP Servers. Confirm both <strong>Salesforce (Org 62)</strong> and <strong>Slack</strong> show a green connected status.</p>
+            <strong>Create the skills folder</strong>
+            <p>Copy and paste this command into Terminal, then press <code>Enter</code>:</p>
+            <p><code>mkdir -p ~/.claude/skills/contact-intel</code></p>
+            <p class="note">This creates the full folder structure in one step. No output means it worked.</p>
           </div>
         </div>
 
         <div class="step-item">
           <div class="step-num">4</div>
           <div class="step-body">
+            <strong>Move SKILL.md into the folder</strong>
+            <p>Copy and paste this command into Terminal, then press <code>Enter</code>:</p>
+            <p><code>mv ~/Downloads/SKILL.md ~/.claude/skills/contact-intel/SKILL.md</code></p>
+            <p class="note">If the file downloaded with a different name (e.g. SKILL (1).md), replace <code>SKILL.md</code> in the command with the exact filename you see in Downloads.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <strong>Confirm the file is in place</strong>
+            <p>Run this command:</p>
+            <p><code>ls ~/.claude/skills/contact-intel/</code></p>
+            <p>The output should show <code>SKILL.md</code>. If it shows nothing or an error, repeat Step 4.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <strong>Verify MCP connections are active</strong>
+            <p>Open Claude Code → click your profile icon (bottom left) → <strong>Settings</strong> → <strong>MCP Servers</strong>. Confirm both <strong>Salesforce (Org 62)</strong> and <strong>Slack</strong> show a green connected status.</p>
+            <p>Not connected? <a href="https://salesforce.enterprise.slack.com/docs/T01G0063H29/F0B6J0FKT6D" target="_blank" rel="noopener">Connect Org 62</a> &nbsp;·&nbsp; <a href="https://salesforce.enterprise.slack.com/docs/T01G0063H29/F0AU8DXM71R" target="_blank" rel="noopener">Connect Slack MCP</a></p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">7</div>
+          <div class="step-body">
+            <strong>Close and reopen Claude Code</strong>
+            <p>Fully quit Claude Code (<code>Command + Q</code>) and reopen it. This ensures the new skill is loaded.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">8</div>
+          <div class="step-body">
             <strong>Run your first lookup</strong>
-            <p>In any Claude Code session, type <code>/contact-intel [Account Name]</code>. The skill will identify you from Salesforce, ask for your territory, and begin Phase 1 automatically.</p>
+            <p>Open a new Claude Code session and type:</p>
+            <p><code>/contact-intel [Account Name]</code></p>
+            <p>The skill will read your Salesforce profile automatically, ask for your territory, and begin Phase 1.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Windows steps -->
+      <div id="steps-windows" class="os-steps hidden">
+
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Download SKILL.md from this repo</strong>
+            <p>Go to <a href="https://github.com/felipebenavides-art/Contact-Intel-Skill-Claude-Code/blob/main/SKILL.md" target="_blank" rel="noopener">this link</a>, click the download icon (top right of the file view), and save the file. It will land in your <strong>Downloads</strong> folder as <code>SKILL.md</code>.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Show hidden files in File Explorer</strong>
+            <p>Open <strong>File Explorer</strong>, click the <strong>View</strong> tab at the top, then click <strong>Show</strong> → check <strong>Hidden items</strong>. This makes the <code>.claude</code> folder visible.</p>
+            <p class="note">On Windows 11: View → Show → Hidden items. On Windows 10: View → check the "Hidden items" checkbox.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Navigate to the .claude folder</strong>
+            <p>In File Explorer, go to: <code>C:\Users\[YourName]\.claude\</code></p>
+            <p class="note">Replace [YourName] with your Windows username. If the .claude folder doesn't exist, open Claude Code first — it creates the folder automatically on first launch.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <strong>Create the skills folder</strong>
+            <p>Inside <code>.claude</code>, right-click → <strong>New → Folder</strong> → name it <code>skills</code>. Then open <code>skills</code>, right-click again → <strong>New → Folder</strong> → name it <code>contact-intel</code>.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <strong>Move SKILL.md into the folder</strong>
+            <p>Go to your <strong>Downloads</strong> folder, find <code>SKILL.md</code>, and move it (cut and paste or drag) into:</p>
+            <p><code>C:\Users\[YourName]\.claude\skills\contact-intel\</code></p>
+            <p>The final path should be: <code>C:\Users\[YourName]\.claude\skills\contact-intel\SKILL.md</code></p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <strong>Verify MCP connections are active</strong>
+            <p>Open Claude Code → click your profile icon (bottom left) → <strong>Settings</strong> → <strong>MCP Servers</strong>. Confirm both <strong>Salesforce (Org 62)</strong> and <strong>Slack</strong> show a green connected status.</p>
+            <p>Not connected? <a href="https://salesforce.enterprise.slack.com/docs/T01G0063H29/F0B6J0FKT6D" target="_blank" rel="noopener">Connect Org 62</a> &nbsp;·&nbsp; <a href="https://salesforce.enterprise.slack.com/docs/T01G0063H29/F0AU8DXM71R" target="_blank" rel="noopener">Connect Slack MCP</a></p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">7</div>
+          <div class="step-body">
+            <strong>Close and reopen Claude Code</strong>
+            <p>Fully close Claude Code and reopen it. This ensures the new skill is loaded.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">8</div>
+          <div class="step-body">
+            <strong>Run your first lookup</strong>
+            <p>Open a new Claude Code session and type:</p>
+            <p><code>/contact-intel [Account Name]</code></p>
+            <p>The skill will read your Salesforce profile automatically, ask for your territory, and begin Phase 1.</p>
           </div>
         </div>
 
@@ -416,6 +550,15 @@ Do you have a ZoomInfo list to add?
     </div>
   </div>
 </section>
+
+<script>
+function showOS(e, os) {
+  document.querySelectorAll('.os-steps').forEach(function(el) { el.classList.add('hidden'); });
+  document.querySelectorAll('.os-tab').forEach(function(el) { el.classList.remove('active'); });
+  document.getElementById('steps-' + os).classList.remove('hidden');
+  e.target.classList.add('active');
+}
+</script>
 
 <!-- ── Section 5 — See It In Action ─────────────────────── -->
 <section id="action">

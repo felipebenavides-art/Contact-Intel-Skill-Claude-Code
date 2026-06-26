@@ -270,6 +270,27 @@ code {
 
 /* ── Section 4 — Prerequisites ───────────────────────────── */
 #prerequisites { background: var(--gray-50); }
+
+.prereq-banner {
+  background: var(--navy);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 18px 24px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.prereq-banner .banner-icon { font-size: 1.3rem; flex-shrink: 0; }
+.prereq-banner a {
+  color: var(--cyan);
+  text-decoration: underline;
+  font-weight: 600;
+}
+.prereq-banner a:hover { color: #33c5ff; }
+
 .prereq-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -304,6 +325,15 @@ code {
 }
 .tag-required { background: rgba(0,30,91,0.08); color: var(--navy); border: 1px solid rgba(0,30,91,0.15); }
 .tag-optional { background: rgba(0,179,255,0.10); color: var(--cyan-dark); border: 1px solid rgba(0,179,255,0.25); }
+.prereq-card .mcp-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: var(--cyan-dark);
+  font-weight: 600;
+  text-decoration: underline;
+}
+.prereq-card .mcp-link:hover { color: var(--navy); }
 
 .install-steps {
   background: var(--white);
@@ -316,9 +346,32 @@ code {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--navy);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
-.step-list { display: flex; flex-direction: column; gap: 20px; }
+.os-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.os-tab {
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--gray-100);
+  background: var(--gray-50);
+  color: var(--gray-400);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.os-tab:hover { border-color: var(--cyan); color: var(--navy); }
+.os-tab.active {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.os-steps { display: flex; flex-direction: column; gap: 20px; }
+.os-steps.hidden { display: none; }
 .step-item { display: flex; gap: 18px; align-items: flex-start; }
 .step-num {
   flex-shrink: 0;
@@ -331,8 +384,16 @@ code {
 }
 .step-body { padding-top: 5px; }
 .step-body strong { display: block; font-size: 0.95rem; color: var(--navy); margin-bottom: 4px; }
-.step-body p { font-size: 0.88rem; color: var(--gray-700); line-height: 1.5; }
+.step-body p { font-size: 0.88rem; color: var(--gray-700); line-height: 1.5; margin-bottom: 6px; }
 .step-body code { font-size: 0.82rem; }
+.step-body .note {
+  font-size: 0.82rem;
+  color: var(--gray-400);
+  font-style: italic;
+  margin-top: 4px;
+}
+.step-body a { color: var(--cyan-dark); font-weight: 600; text-decoration: underline; }
+.step-body a:hover { color: var(--navy); }
 
 /* ── Section 1 — What is /contact-intel ──────────────────── */
 #what-is { background: var(--white); }
