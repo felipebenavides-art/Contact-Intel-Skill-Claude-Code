@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#001e5b"/>
+      <stop offset="100%" stop-color="#003080"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="#00b3ff" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#001e5b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="300" fill="url(#bg)"/>
+  <rect width="1200" height="300" fill="url(#glow)"/>
+
+  <!-- Decorative circle glow top-right -->
+  <circle cx="1050" cy="-30" r="260" fill="#00b3ff" fill-opacity="0.05"/>
+
+  <!-- Badge pill -->
+  <rect x="491" y="38" width="218" height="26" rx="13" fill="#00b3ff" fill-opacity="0.15" stroke="#00b3ff" stroke-width="1"/>
+  <text x="600" y="56" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#00b3ff" letter-spacing="1.8">CLAUDE CODE · SKILLS</text>
+
+  <!-- Main title line 1 -->
+  <text x="600" y="128" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="50" font-weight="700" fill="#ffffff" letter-spacing="-0.5">Contact Intelligence</text>
+
+  <!-- Main title line 2 — cyan accent -->
+  <text x="600" y="186" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="50" font-weight="700" fill="#00b3ff" letter-spacing="-0.5">&amp; Strategy</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="222" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15.5" fill="#ffffff" fill-opacity="0.65">From account lookup to drafted outreach — in one skill. Powered by live Salesforce data.</text>
+
+  <!-- Command pill -->
+  <rect x="408" y="244" width="384" height="40" rx="7" fill="#00b3ff" fill-opacity="0.12" stroke="#00b3ff" stroke-width="1.5"/>
+  <text x="600" y="269" text-anchor="middle" font-family="Cascadia Code, Fira Code, Consolas, monospace" font-size="15" fill="#00b3ff" letter-spacing="0.3">/contact-intel [Account Name]</text>
+</svg>
