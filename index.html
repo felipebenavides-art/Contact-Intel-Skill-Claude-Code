@@ -388,50 +388,23 @@ Do you have a ZoomInfo list to add?
         <div class="step-item">
           <div class="step-num">1</div>
           <div class="step-body">
-            <strong>Download SKILL.md</strong>
-            <a class="download-btn" href="https://github.com/felipebenavides-art/Contact-Intel-Skill-Claude-Code/blob/main/SKILL.md" target="_blank" rel="noopener">↓ Get SKILL.md from GitHub →</a>
-            <p class="note">Opens on GitHub. Click the download icon (↓) in the top-right of the file view to save it.</p>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-num">2</div>
-          <div class="step-body">
             <strong>Open Terminal</strong>
             <p>Press <code>Command + Space</code>, type <strong>Terminal</strong>, press Enter.</p>
           </div>
         </div>
 
         <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Run the install command</strong>
+            <p>Paste this single command and press Enter:</p>
+            <p><code>mkdir -p ~/.claude/skills/contact-intel && curl -sL https://github.com/felipebenavides-art/Contact-Intel-Skill-Claude-Code/raw/main/SKILL.md -o ~/.claude/skills/contact-intel/SKILL.md && echo "✓ Skill installed!"</code></p>
+            <p class="note">This creates the folder and downloads the file in one step. You should see <strong>✓ Skill installed!</strong> when it's done.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
           <div class="step-num">3</div>
-          <div class="step-body">
-            <strong>Create the skills folder</strong>
-            <p>Paste this command and press Enter:</p>
-            <p><code>mkdir -p ~/.claude/skills/contact-intel</code></p>
-            <p class="note">No output = success.</p>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <strong>Move SKILL.md into the folder</strong>
-            <p>Paste this command and press Enter:</p>
-            <p><code>mv ~/Downloads/SKILL.md ~/.claude/skills/contact-intel/SKILL.md</code></p>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-num">5</div>
-          <div class="step-body">
-            <strong>Confirm it's in place</strong>
-            <p><code>ls ~/.claude/skills/contact-intel/</code></p>
-            <p>Output should show <code>SKILL.md</code>. If it's empty, repeat Step 4.</p>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-num">6</div>
           <div class="step-body">
             <strong>Restart Claude Code</strong>
             <p>Press <code>Command + Q</code> to quit, then reopen. This loads the new skill.</p>
@@ -439,7 +412,7 @@ Do you have a ZoomInfo list to add?
         </div>
 
         <div class="step-item">
-          <div class="step-num">7</div>
+          <div class="step-num">4</div>
           <div class="step-body">
             <strong>Run your first lookup</strong>
             <p>In a new Claude Code session, type:</p>
@@ -455,50 +428,23 @@ Do you have a ZoomInfo list to add?
         <div class="step-item">
           <div class="step-num">1</div>
           <div class="step-body">
-            <strong>Download SKILL.md</strong>
-            <a class="download-btn" href="https://github.com/felipebenavides-art/Contact-Intel-Skill-Claude-Code/blob/main/SKILL.md" target="_blank" rel="noopener">↓ Get SKILL.md from GitHub →</a>
-            <p class="note">Opens on GitHub. Click the download icon (↓) in the top-right of the file view to save it.</p>
+            <strong>Open PowerShell</strong>
+            <p>Press <code>Win + X</code>, then click <strong>Terminal</strong> or <strong>Windows PowerShell</strong>.</p>
           </div>
         </div>
 
         <div class="step-item">
           <div class="step-num">2</div>
           <div class="step-body">
-            <strong>Show hidden files in File Explorer</strong>
-            <p><strong>View → Show → Hidden items</strong></p>
-            <p class="note">Windows 10: View → check the "Hidden items" checkbox.</p>
+            <strong>Run the install command</strong>
+            <p>Paste this single command and press Enter:</p>
+            <p><code>New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills\contact-intel" | Out-Null; Invoke-WebRequest -Uri "https://github.com/felipebenavides-art/Contact-Intel-Skill-Claude-Code/raw/main/SKILL.md" -OutFile "$env:USERPROFILE\.claude\skills\contact-intel\SKILL.md"; Write-Host "✓ Skill installed!"</code></p>
+            <p class="note">This creates the folder and downloads the file in one step. You should see <strong>✓ Skill installed!</strong> when it's done.</p>
           </div>
         </div>
 
         <div class="step-item">
           <div class="step-num">3</div>
-          <div class="step-body">
-            <strong>Navigate to the .claude folder</strong>
-            <p>In the File Explorer address bar, go to:</p>
-            <p><code>C:\Users\[YourName]\.claude\</code></p>
-            <p class="note">If .claude doesn't exist, open Claude Code first — it creates it on launch.</p>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <strong>Create the skills folder</strong>
-            <p>Inside <code>.claude</code>: right-click → <strong>New → Folder</strong> → name it <code>skills</code>. Open <code>skills</code>, repeat → name it <code>contact-intel</code>.</p>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-num">5</div>
-          <div class="step-body">
-            <strong>Move SKILL.md into the folder</strong>
-            <p>From Downloads, move <code>SKILL.md</code> into:</p>
-            <p><code>C:\Users\[YourName]\.claude\skills\contact-intel\</code></p>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-num">6</div>
           <div class="step-body">
             <strong>Restart Claude Code</strong>
             <p>Fully close and reopen Claude Code. This loads the new skill.</p>
@@ -506,7 +452,7 @@ Do you have a ZoomInfo list to add?
         </div>
 
         <div class="step-item">
-          <div class="step-num">7</div>
+          <div class="step-num">4</div>
           <div class="step-body">
             <strong>Run your first lookup</strong>
             <p>In a new Claude Code session, type:</p>

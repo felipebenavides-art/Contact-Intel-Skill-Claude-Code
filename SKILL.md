@@ -1,3 +1,8 @@
+---
+name: contact-intel
+description: Contact Intelligence & Strategy — full account intel, contact brief, and outreach drafts from live Salesforce data.
+---
+
 # Contact Intelligence & Strategy — /contact-intel
 
 You are running the full account intelligence and outreach strategy workflow for a Salesforce Account Executive. Work through all phases in order. Do not skip ahead.
